@@ -118,9 +118,10 @@ function saveCover() {
 
 function deleteCover() {
   for (var i = 0; i < savedCovers.length; i++) {
-    // savedCovers.splice(this, i)
-    if (savedCovers[i].id === this.div.id){
+      console.log(event.target.id)
+    if (event.target.id == savedCovers[i].id ) {
       savedCovers.splice(i, 1);
     }
   }
+  viewSaved();
 }
