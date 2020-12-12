@@ -3,9 +3,8 @@
 
 // We've provided a few variables below
 var savedCovers = [
-  new Cover("http://3.bp.blogspot.com/-iE4p9grvfpQ/VSfZT0vH2UI/AAAAAAAANq8/wwQZssi-V5g/s1600/Do%2BNot%2BForsake%2BMe%2B-%2BImage.jpg", "Sunsets and Sorrows", "sunsets", "sorrows")
+  new Cover('http://3.bp.blogspot.com/-iE4p9grvfpQ/VSfZT0vH2UI/AAAAAAAANq8/wwQZssi-V5g/s1600/Do%2BNot%2BForsake%2BMe%2B-%2BImage.jpg', 'Sunsets and Sorrows', 'sunsets', 'sorrows')
 ];
-var currentCover = {};
 var title = document.querySelector('.cover-title');
 var image = document.querySelector('.cover-image');
 var tagline1 = document.querySelector('.tagline-1');
@@ -24,6 +23,8 @@ var userDescriptor1 = document.querySelector('#descriptor1');
 var userDescriptor2 = document.querySelector('#descriptor2');
 var createBookButton = document.querySelector('.create-new-book-button');
 var savedCoversSection = document.querySelector('.saved-covers-section');
+var currentCover = {};
+
 
 // Add your event listeners here 👇
 window.addEventListener('load', getRandomCover);
@@ -33,7 +34,7 @@ homeButton.addEventListener('click', goHome);
 viewSavedButton.addEventListener('click', viewSaved);
 createBookButton.addEventListener('click', createBook);
 saveCoverButton.addEventListener('click', saveCover);
-savedCoversSection.addEventListener('dblclick', deleteCover)
+savedCoversSection.addEventListener('dblclick', deleteCover);
 
 
 
@@ -48,7 +49,7 @@ function getRandomCover() {
   title.innerText = titles[getRandomIndex(titles)];
   image.src = covers[getRandomIndex(covers)];
   tagline1.innerText = descriptors[getRandomIndex(descriptors)];
-  tagline2.innerText =descriptors[getRandomIndex(descriptors)];
+  tagline2.innerText = descriptors[getRandomIndex(descriptors)];
   currentCover = new Cover(image.src, title.innerText, tagline1.innerText, tagline2.innerText);
 }
 
@@ -81,7 +82,7 @@ function viewSaved() {
   for (var i = 0; i < savedCovers.length; i++) {
     savedCoversSection.innerHTML += `
       <div class="mini-cover">
-        <img id = ${savedCovers[i].id} class = "mini-cover" src=${savedCovers[i].cover}>
+        <img id=${savedCovers[i].id} class="mini-cover" src=${savedCovers[i].cover}>
         <h2 class="cover-title">${savedCovers[i].title}</h2>
         <h3 class="tagline">
           A tale of
