@@ -118,8 +118,7 @@ function saveCover() {
 
 function deleteCover() {
   for (var i = 0; i < savedCovers.length; i++) {
-      console.log(event.target.id)
-    if (event.target.id == savedCovers[i].id ) {
+    if (event.target.id == savedCovers[i].id) {
       savedCovers.splice(i, 1);
     }
   }
