@@ -76,10 +76,6 @@ function viewSaved() {
   viewSavedPage.classList.remove('hidden');
   randomCoverButton.classList.add('hidden');
   saveCoverButton.classList.add('hidden');
-  //display covers
-  // savedCoversSection.innerHTML = savedCovers;
-  console.log(savedCovers[0]);
-  console.log(savedCovers[0].cover);
 
   for (var i = 0; i < savedCovers.length; i++) {
     savedCoversSection.innerHTML += `
@@ -96,7 +92,6 @@ function viewSaved() {
     `;
   }
 }
-console.log(savedCovers);
 
 function createBook() {
   event.preventDefault();
@@ -118,4 +113,3 @@ function saveCover() {
     savedCovers.push(currentCover);
   }
 }
-console.log(savedCovers);
