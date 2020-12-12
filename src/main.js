@@ -33,6 +33,7 @@ homeButton.addEventListener('click', goHome);
 viewSavedButton.addEventListener('click', viewSaved);
 createBookButton.addEventListener('click', createBook);
 saveCoverButton.addEventListener('click', saveCover);
+savedCoversSection.addEventListener('dblclick', deleteCover)
 
 
 
@@ -76,11 +77,11 @@ function viewSaved() {
   viewSavedPage.classList.remove('hidden');
   randomCoverButton.classList.add('hidden');
   saveCoverButton.classList.add('hidden');
-
+  savedCoversSection.innerHTML = '';
   for (var i = 0; i < savedCovers.length; i++) {
     savedCoversSection.innerHTML += `
       <div class="mini-cover">
-        <img class = "mini-cover" src=${savedCovers[i].cover}>
+        <img id = ${savedCovers[i].id} class = "mini-cover" src=${savedCovers[i].cover}>
         <h2 class="cover-title">${savedCovers[i].title}</h2>
         <h3 class="tagline">
           A tale of
@@ -111,5 +112,15 @@ function saveCover() {
     return
   } else {
     savedCovers.push(currentCover);
+  }
+}
+
+
+function deleteCover() {
+  for (var i = 0; i < savedCovers.length; i++) {
+    // savedCovers.splice(this, i)
+    if (savedCovers[i].id === this.div.id){
+      savedCovers.splice(i, 1);
+    }
   }
 }
