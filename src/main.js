@@ -23,6 +23,8 @@ var userTitle = document.querySelector('#title');
 var userDescriptor1 = document.querySelector('#descriptor1');
 var userDescriptor2 = document.querySelector('#descriptor2');
 var createBookButton = document.querySelector('.create-new-book-button');
+var savedCoversSection = document.querySelector('.saved-covers-section');
+
 // Add your event listeners here 👇
 window.addEventListener('load', getRandomCover);
 randomCoverButton.addEventListener('click', getRandomCover);
@@ -30,6 +32,7 @@ makeNewButton.addEventListener('click', showForm);
 homeButton.addEventListener('click', goHome);
 viewSavedButton.addEventListener('click', viewSaved);
 createBookButton.addEventListener('click', createBook);
+saveCoverButton.addEventListener('click', saveCover);
 
 
 
@@ -73,6 +76,21 @@ function viewSaved() {
   viewSavedPage.classList.remove('hidden');
   randomCoverButton.classList.add('hidden');
   saveCoverButton.classList.add('hidden');
+
+  for (var i = 0; i < savedCovers.length; i++) {
+    savedCoversSection.innerHTML += `
+      <div class="mini-cover">
+        <img class = "mini-cover" src=${savedCovers[i].cover}>
+        <h2 class="cover-title">${savedCovers[i].title}</h2>
+        <h3 class="tagline">
+          A tale of
+          <span class="tagline-1">${savedCovers[i].tagline1}</span>
+          and
+          <span class="tagline-2">${savedCovers[i].tagline2}</span>
+        </h3>
+      </div>
+    `;
+  }
 }
 
 function createBook() {
@@ -86,4 +104,12 @@ function createBook() {
   descriptors.push(userDescriptor1.value, userDescriptor2.value);
   currentCover = new Cover(image.src, title.innerText, tagline1.innerText, tagline2.innerText);
   goHome();
+}
+
+function saveCover() {
+  if (savedCovers.includes(currentCover)) {
+    return
+  } else {
+    savedCovers.push(currentCover);
+  }
 }
