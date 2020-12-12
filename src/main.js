@@ -96,11 +96,11 @@ function viewSaved() {
 
 function createBook() {
   event.preventDefault();
-  image.src = userCover.src;
+  image.src = userCover.value;
   title.innerText = userTitle.value;
   tagline1.innerText = userDescriptor1.value;
   tagline2.innerText = userDescriptor2.value;
-  covers.push(userCover.src);
+  covers.push(userCover.value);
   titles.push(userTitle.value);
   descriptors.push(userDescriptor1.value, userDescriptor2.value);
   currentCover = new Cover(image.src, title.innerText, tagline1.innerText, tagline2.innerText);
