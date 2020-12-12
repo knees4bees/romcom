@@ -23,6 +23,8 @@ var userTitle = document.querySelector('#title');
 var userDescriptor1 = document.querySelector('#descriptor1');
 var userDescriptor2 = document.querySelector('#descriptor2');
 var createBookButton = document.querySelector('.create-new-book-button');
+var savedCoversSection = document.querySelector('.saved-covers-section');
+
 // Add your event listeners here 👇
 window.addEventListener('load', getRandomCover);
 randomCoverButton.addEventListener('click', getRandomCover);
@@ -74,6 +76,23 @@ function viewSaved() {
   viewSavedPage.classList.remove('hidden');
   randomCoverButton.classList.add('hidden');
   saveCoverButton.classList.add('hidden');
+  //display covers
+  // savedCoversSection.innerHTML = savedCovers;
+  console.log(savedCovers[0]);
+  console.log(savedCovers[0].cover);
+
+  savedCoversSection.innerHTML = `
+    <div class="mini-cover">
+      <img class = "mini-cover" src=${savedCovers[0].cover}>
+      <h2 class="cover-title">${savedCovers[0].title}</h2>
+      <h3 class="tagline">
+        A tale of
+          <span class="tagline-1">${savedCovers[0].tagline1}</span>
+         and
+          <span class="tagline-2">${savedCovers[0].tagline2}</span>
+      </h3>
+    </div>
+  `;
 }
 
 function createBook() {
