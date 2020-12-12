@@ -90,6 +90,10 @@ function createBook() {
 }
 
 function saveCover() {
-  savedCovers.push(currentCover);
+  if (savedCovers.includes(currentCover)) {
+    return
+  } else {
+    savedCovers.push(currentCover);
+  }
 }
 console.log(savedCovers);
