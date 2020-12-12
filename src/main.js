@@ -30,6 +30,7 @@ makeNewButton.addEventListener('click', showForm);
 homeButton.addEventListener('click', goHome);
 viewSavedButton.addEventListener('click', viewSaved);
 createBookButton.addEventListener('click', createBook);
+saveCoverButton.addEventListener('click', saveCover);
 
 
 
@@ -87,3 +88,8 @@ function createBook() {
   currentCover = new Cover(image.src, title.innerText, tagline1.innerText, tagline2.innerText);
   goHome();
 }
+
+function saveCover() {
+  savedCovers.push(currentCover);
+}
+console.log(savedCovers);
