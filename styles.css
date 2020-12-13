@@ -164,3 +164,7 @@ form > button:hover {
   background: #e07999;
   color: white;
 }
+
+.handle-error {
+  border: 3px solid red;
+}
