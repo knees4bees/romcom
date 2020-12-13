@@ -54,6 +54,10 @@ function getRandomCover() {
 }
 
 function showForm() {
+  userCover.classList.remove('handle-error');
+  userTitle.classList.remove('handle-error');
+  userDescriptor1.classList.remove('handle-error');
+  userDescriptor2.classList.remove('handle-error');
   makeOwnPage.classList.remove('hidden');
   homePage.classList.add('hidden');
   homeButton.classList.remove('hidden');
@@ -97,6 +101,10 @@ function viewSaved() {
 
 function createBook() {
   event.preventDefault();
+  userCover.classList.remove('handle-error');
+  userTitle.classList.remove('handle-error');
+  userDescriptor1.classList.remove('handle-error');
+  userDescriptor2.classList.remove('handle-error');
   if (userCover.value.endsWith('.png' || '.jpg') && userTitle.value && userDescriptor1.value && userDescriptor2.value) {
     image.src = userCover.value;
     title.innerText = userTitle.value;
@@ -108,15 +116,13 @@ function createBook() {
     currentCover = new Cover(image.src, title.innerText, tagline1.innerText, tagline2.innerText);
     goHome();
   } else if (userCover.value.endsWith('.png' || '.jpg') === false) {
-    alert('Please enter a valid image link.')
+      userCover.classList.add('handle-error');
   } else if (userTitle.value === "") {
-    alert('Enter a title!')
-  }
-    else if (userDescriptor1.value === "") {
-      alert('Enter a first descriptor!')
-  }
-    else if (userDescriptor2.value === "") {
-      alert('Enter a second descriptor!')
+      userTitle.classList.add('handle-error');
+  } else if (userDescriptor1.value === "") {
+      userDescriptor1.classList.add('handle-error');
+  } else if (userDescriptor2.value === "") {
+      userDescriptor2.classList.add('handle-error');
   }
 }
 
