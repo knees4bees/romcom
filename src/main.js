@@ -54,6 +54,14 @@ function getRandomCover() {
 }
 
 function showForm() {
+  userCover.placeholder = '';
+  userTitle.placeholder = '';
+  userDescriptor1.placeholder = '';
+  userDescriptor2.placeholder = '';
+  userCover.value = '';
+  userTitle.value = '';
+  userDescriptor1.value = '';
+  userDescriptor2.value = '';
   userCover.classList.remove('handle-error');
   userTitle.classList.remove('handle-error');
   userDescriptor1.classList.remove('handle-error');
@@ -105,7 +113,7 @@ function createBook() {
   userTitle.classList.remove('handle-error');
   userDescriptor1.classList.remove('handle-error');
   userDescriptor2.classList.remove('handle-error');
-  if (userCover.value.endsWith('.png' || '.jpg') && userTitle.value && userDescriptor1.value && userDescriptor2.value) {
+  if ( (userCover.value.endsWith('.png') || userCover.value.endsWith('.jpg')) && userTitle.value && userDescriptor1.value && userDescriptor2.value) {
     image.src = userCover.value;
     title.innerText = userTitle.value;
     tagline1.innerText = userDescriptor1.value;
@@ -115,14 +123,18 @@ function createBook() {
     descriptors.push(userDescriptor1.value, userDescriptor2.value);
     currentCover = new Cover(image.src, title.innerText, tagline1.innerText, tagline2.innerText);
     goHome();
-  } else if (userCover.value.endsWith('.png' || '.jpg') === false) {
-      userCover.classList.add('handle-error');
-  } else if (userTitle.value === "") {
+  } else if (userTitle.value === '') {
       userTitle.classList.add('handle-error');
-  } else if (userDescriptor1.value === "") {
+      userTitle.placeholder = 'Enter a title';
+  } else if (userDescriptor1.value === '') {
       userDescriptor1.classList.add('handle-error');
-  } else if (userDescriptor2.value === "") {
+      userDescriptor1.placeholder = 'Enter a descriptor';
+  } else if (userDescriptor2.value === '') {
       userDescriptor2.classList.add('handle-error');
+      userDescriptor2.placeholder = 'Enter a descriptor';
+  } else if (userCover.value.endsWith('.jpg') === false || userCover.value.endsWith('.png') === false) {
+      userCover.classList.add('handle-error');
+      userCover.placeholder = 'Enter a .jpg or .png image';
   }
 }
 
@@ -130,7 +142,7 @@ function saveCover() {
   if (savedCovers.includes(currentCover)) {
     return
   } else {
-    savedCovers.push(currentCover);
+      savedCovers.push(currentCover);
   }
 }
 
