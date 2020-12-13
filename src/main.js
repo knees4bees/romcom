@@ -97,15 +97,27 @@ function viewSaved() {
 
 function createBook() {
   event.preventDefault();
-  image.src = userCover.value;
-  title.innerText = userTitle.value;
-  tagline1.innerText = userDescriptor1.value;
-  tagline2.innerText = userDescriptor2.value;
-  covers.push(userCover.value);
-  titles.push(userTitle.value);
-  descriptors.push(userDescriptor1.value, userDescriptor2.value);
-  currentCover = new Cover(image.src, title.innerText, tagline1.innerText, tagline2.innerText);
-  goHome();
+  if (userCover.value.endsWith('.png' || '.jpg') && userTitle.value && userDescriptor1.value && userDescriptor2.value) {
+    image.src = userCover.value;
+    title.innerText = userTitle.value;
+    tagline1.innerText = userDescriptor1.value;
+    tagline2.innerText = userDescriptor2.value;
+    covers.push(userCover.value);
+    titles.push(userTitle.value);
+    descriptors.push(userDescriptor1.value, userDescriptor2.value);
+    currentCover = new Cover(image.src, title.innerText, tagline1.innerText, tagline2.innerText);
+    goHome();
+  } else if (userCover.value.endsWith('.png' || '.jpg') === false) {
+    alert('Please enter a valid image link.')
+  } else if (userTitle.value === "") {
+    alert('Enter a title!')
+  }
+    else if (userDescriptor1.value === "") {
+      alert('Enter a first descriptor!')
+  }
+    else if (userDescriptor2.value === "") {
+      alert('Enter a second descriptor!')
+  }
 }
 
 function saveCover() {
