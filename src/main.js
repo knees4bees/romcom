@@ -141,17 +141,17 @@ function createBook() {
     currentCover = new Cover(image.src, title.innerText, tagline1.innerText, tagline2.innerText);
     goHome();
   } else if (userTitle.value === '') {
-      userTitle.classList.add('handle-error');
-      userTitle.placeholder = 'Enter a title';
+    userTitle.classList.add('handle-error');
+    userTitle.placeholder = 'Enter a title';
   } else if (userDescriptor1.value === '') {
-      userDescriptor1.classList.add('handle-error');
-      userDescriptor1.placeholder = 'Enter a descriptor';
+    userDescriptor1.classList.add('handle-error');
+    userDescriptor1.placeholder = 'Enter a descriptor';
   } else if (userDescriptor2.value === '') {
-      userDescriptor2.classList.add('handle-error');
-      userDescriptor2.placeholder = 'Enter a descriptor';
+    userDescriptor2.classList.add('handle-error');
+    userDescriptor2.placeholder = 'Enter a descriptor';
   } else if (userCover.value.endsWith('.jpg') === false || userCover.value.endsWith('.png') === false) {
-      userCover.classList.add('handle-error');
-      userCover.placeholder = 'Enter a .jpg or .png image';
+    userCover.classList.add('handle-error');
+    userCover.placeholder = 'Enter a .jpg or .png image';
   }
 }
 
@@ -159,7 +159,7 @@ function saveCover() {
   if (savedCovers.includes(currentCover)) {
     return
   } else {
-      savedCovers.push(currentCover);
+    savedCovers.push(currentCover);
   }
 }
 
