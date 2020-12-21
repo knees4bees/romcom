@@ -61,8 +61,11 @@ function show(element) {
   element.classList.remove('hidden');
 }
 
-function dontShowFormError(element) {
-  element.classList.remove('handle-error');
+function dontShowFormError() {
+  userCover.classList.remove('handle-error');
+  userTitle.classList.remove('handle-error');
+  userDescriptor1.classList.remove('handle-error');
+  userDescriptor2.classList.remove('handle-error');
 }
 
 function showForm() {
@@ -70,10 +73,7 @@ function showForm() {
   userTitle.value = '';
   userDescriptor1.value = '';
   userDescriptor2.value = '';
-  dontShowFormError(userCover);
-  dontShowFormError(userTitle);
-  dontShowFormError(userDescriptor1);
-  dontShowFormError(userDescriptor2);
+  dontShowFormError();
   show(makeOwnPage);
   show(homeButton);
   hide(homePage);
@@ -117,10 +117,7 @@ function viewSaved() {
 
 function createBook() {
   event.preventDefault();
-  dontShowFormError(userCover);
-  dontShowFormError(userTitle);
-  dontShowFormError(userDescriptor1);
-  dontShowFormError(userDescriptor2);
+  dontShowFormError();
   if ( (userCover.value.endsWith('.png') || userCover.value.endsWith('.jpg')) && userTitle.value && userDescriptor1.value && userDescriptor2.value) {
     image.src = userCover.value;
     title.innerText = userTitle.value;
