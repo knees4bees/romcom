@@ -62,10 +62,6 @@ function show(element) {
 }
 
 function showForm() {
-  userCover.placeholder = '';
-  userTitle.placeholder = '';
-  userDescriptor1.placeholder = '';
-  userDescriptor2.placeholder = '';
   userCover.value = '';
   userTitle.value = '';
   userDescriptor1.value = '';
