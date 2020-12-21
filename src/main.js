@@ -61,6 +61,10 @@ function show(element) {
   element.classList.remove('hidden');
 }
 
+function dontShowFormError(element) {
+  element.classList.remove('handle-error');
+}
+
 function showForm() {
   userCover.value = '';
   userTitle.value = '';
