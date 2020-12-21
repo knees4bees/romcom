@@ -74,30 +74,30 @@ function showForm() {
   userTitle.classList.remove('handle-error');
   userDescriptor1.classList.remove('handle-error');
   userDescriptor2.classList.remove('handle-error');
-  makeOwnPage.classList.remove('hidden');
-  homePage.classList.add('hidden');
-  homeButton.classList.remove('hidden');
-  viewSavedPage.classList.add('hidden');
-  randomCoverButton.classList.add('hidden');
-  saveCoverButton.classList.add('hidden');
+  show(makeOwnPage);
+  show(homeButton);
+  hide(homePage);
+  hide(viewSavedPage);
+  hide(randomCoverButton);
+  hide(saveCoverButton);
 }
 
 function goHome() {
-  makeOwnPage.classList.add('hidden');
-  homePage.classList.remove('hidden');
-  homeButton.classList.add('hidden');
-  viewSavedPage.classList.add('hidden');
-  randomCoverButton.classList.remove('hidden');
-  saveCoverButton.classList.remove('hidden');
+  show(homePage);
+  show(randomCoverButton);
+  show(saveCoverButton);
+  hide(makeOwnPage);
+  hide(homeButton);
+  hide(viewSavedPage);
 }
 
 function viewSaved() {
-  makeOwnPage.classList.add('hidden');
-  homePage.classList.add('hidden');
-  homeButton.classList.remove('hidden');
-  viewSavedPage.classList.remove('hidden');
-  randomCoverButton.classList.add('hidden');
-  saveCoverButton.classList.add('hidden');
+  show(homeButton);
+  show(viewSavedPage);
+  hide(makeOwnPage);
+  hide(homePage);
+  hide(randomCoverButton);
+  hide(saveCoverButton);
   savedCoversSection.innerHTML = '';
   for (var i = 0; i < savedCovers.length; i++) {
     savedCoversSection.innerHTML += `
