@@ -68,11 +68,15 @@ function dontShowFormError() {
   userDescriptor2.classList.remove('handle-error');
 }
 
-function showForm() {
+function createDefaultFormValues() {
   userCover.value = '';
   userTitle.value = '';
   userDescriptor1.value = '';
   userDescriptor2.value = '';
+}
+
+function showForm() {
+  createDefaultFormValues();
   dontShowFormError();
   show(makeOwnPage);
   show(homeButton);
