@@ -75,9 +75,17 @@ function createDefaultFormValues() {
   userDescriptor2.value = '';
 }
 
+function setEmptyPlaceholders() {
+  userCover.placeholder = '';
+  userTitle.placeholder = '';
+  userDescriptor1.placeholder = '';
+  userDescriptor2.placeholder = '';
+}
+
 function showForm() {
   createDefaultFormValues();
   dontShowFormError();
+  setEmptyPlaceholders();
   show(makeOwnPage);
   show(homeButton);
   hide(homePage);
