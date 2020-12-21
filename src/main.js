@@ -53,6 +53,14 @@ function getRandomCover() {
   currentCover = new Cover(image.src, title.innerText, tagline1.innerText, tagline2.innerText);
 }
 
+function hide(element) {
+  element.classList.add('hidden');
+}
+
+function show(element) {
+  element.classList.remove('hidden');
+}
+
 function showForm() {
   userCover.placeholder = '';
   userTitle.placeholder = '';
