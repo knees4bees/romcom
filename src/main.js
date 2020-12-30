@@ -46,11 +46,15 @@ function getRandomIndex(array) {
 }
 
 function getRandomCover() {
-  title.innerText = titles[getRandomIndex(titles)];
-  image.src = covers[getRandomIndex(covers)];
-  tagline1.innerText = descriptors[getRandomIndex(descriptors)];
-  tagline2.innerText = descriptors[getRandomIndex(descriptors)];
-  currentCover = new Cover(image.src, title.innerText, tagline1.innerText, tagline2.innerText);
+  var newTitle = titles[getRandomIndex(titles)];
+  var newImage = covers[getRandomIndex(covers)];
+  var newTagline1 = descriptors[getRandomIndex(descriptors)];
+  var newTagline2 = descriptors[getRandomIndex(descriptors)];
+  currentCover = new Cover(newImage, newTitle, newTagline1, newTagline2);
+  title.innerText = currentCover.title;
+  image.src = currentCover.cover;
+  tagline1.innerText = currentCover.tagline1;
+  tagline2.innerText = currentCover.tagline2;
 }
 
 function hide(element) {
