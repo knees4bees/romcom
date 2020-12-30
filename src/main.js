@@ -62,10 +62,10 @@ function show(element) {
 }
 
 function dontShowFormError() {
-  userCover.classList.remove('handle-error');
-  userTitle.classList.remove('handle-error');
-  userDescriptor1.classList.remove('handle-error');
-  userDescriptor2.classList.remove('handle-error');
+  userCover.classList.remove('red-border');
+  userTitle.classList.remove('red-border');
+  userDescriptor1.classList.remove('red-border');
+  userDescriptor2.classList.remove('red-border');
 }
 
 function createDefaultFormValues() {
@@ -153,16 +153,16 @@ function ingestUserData() {
 
 function handleError() {
   if (userTitle.value === '') {
-    userTitle.classList.add('handle-error');
+    userTitle.classList.add('red-border');
     userTitle.placeholder = 'Enter a title';
   } else if (userDescriptor1.value === '') {
-    userDescriptor1.classList.add('handle-error');
+    userDescriptor1.classList.add('red-border');
     userDescriptor1.placeholder = 'Enter a descriptor';
   } else if (userDescriptor2.value === '') {
-    userDescriptor2.classList.add('handle-error');
+    userDescriptor2.classList.add('red-border');
     userDescriptor2.placeholder = 'Enter a descriptor';
   } else if (userCover.value.endsWith('.jpg') === false || userCover.value.endsWith('.png') === false) {
-    userCover.classList.add('handle-error');
+    userCover.classList.add('red-border');
     userCover.placeholder = 'Enter a .jpg or .png image';
   }
 }
