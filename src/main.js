@@ -139,19 +139,23 @@ function validateFields() {
     }
 }
 
+function ingestUserData() {
+  image.src = userCover.value;
+  title.innerText = userTitle.value;
+  tagline1.innerText = userDescriptor1.value;
+  tagline2.innerText = userDescriptor2.value;
+  covers.push(userCover.value);
+  titles.push(userTitle.value);
+  descriptors.push(userDescriptor1.value, userDescriptor2.value);
+  currentCover = new Cover(image.src, title.innerText, tagline1.innerText, tagline2.innerText);
+  goHome();
+}
+
 function createBook() {
   event.preventDefault();
   dontShowFormError();
   if (validateFields()) {
-    image.src = userCover.value;
-    title.innerText = userTitle.value;
-    tagline1.innerText = userDescriptor1.value;
-    tagline2.innerText = userDescriptor2.value;
-    covers.push(userCover.value);
-    titles.push(userTitle.value);
-    descriptors.push(userDescriptor1.value, userDescriptor2.value);
-    currentCover = new Cover(image.src, title.innerText, tagline1.innerText, tagline2.innerText);
-    goHome();
+    ingestUserData();
   } else if (userTitle.value === '') {
     userTitle.classList.add('handle-error');
     userTitle.placeholder = 'Enter a title';
