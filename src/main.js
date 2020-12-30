@@ -51,6 +51,10 @@ function getRandomCover() {
   var newTagline1 = descriptors[getRandomIndex(descriptors)];
   var newTagline2 = descriptors[getRandomIndex(descriptors)];
   currentCover = new Cover(newImage, newTitle, newTagline1, newTagline2);
+  displayCurrentCover();
+}
+
+function displayCurrentCover() {
   title.innerText = currentCover.title;
   image.src = currentCover.cover;
   tagline1.innerText = currentCover.tagline1;
@@ -156,10 +160,7 @@ function ingestUserData() {
   titles.push(newTitle);
   descriptors.push(newTagline1, newTagline2);
   currentCover = new Cover(newCover, newTitle, newTagline1, newTagline2);
-  image.src = currentCover.cover;
-  title.innerText = currentCover.title;
-  tagline1.innerText = currentCover.tagline1;
-  tagline2.innerText = currentCover.tagline2;
+  displayCurrentCover();
 }
 
 function addRedBorder(element) {
