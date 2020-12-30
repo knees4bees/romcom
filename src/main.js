@@ -103,13 +103,7 @@ function goHome() {
   hide(viewSavedPage);
 }
 
-function viewSaved() {
-  show(homeButton);
-  show(viewSavedPage);
-  hide(makeOwnPage);
-  hide(homePage);
-  hide(randomCoverButton);
-  hide(saveCoverButton);
+function displayMiniCovers() {
   savedCoversSection.innerHTML = '';
   for (var i = 0; i < savedCovers.length; i++) {
     savedCoversSection.innerHTML += `
@@ -125,6 +119,16 @@ function viewSaved() {
       </div>
     `;
   }
+}
+
+function viewSaved() {
+  show(homeButton);
+  show(viewSavedPage);
+  hide(makeOwnPage);
+  hide(homePage);
+  hide(randomCoverButton);
+  hide(saveCoverButton);
+  displayMiniCovers();
 }
 
 function validateFields() {
