@@ -151,19 +151,35 @@ function ingestUserData() {
   goHome();
 }
 
+function addRedBorder(element) {
+  element.classList.add('red-border');
+}
+
+function displayErrorMessage(element) {
+  if (element === userTitle) {
+    message = 'Enter a title';
+  } else if (element === userCover) {
+    message = 'Enter a .jpg or .png image';
+  } else {
+    message = 'Enter a descriptor';
+  }
+
+  element.placeholder = message;
+}
+
 function handleError() {
   if (userTitle.value === '') {
-    userTitle.classList.add('red-border');
-    userTitle.placeholder = 'Enter a title';
+    addRedBorder(userTitle);
+    displayErrorMessage(userTitle);
   } else if (userDescriptor1.value === '') {
-    userDescriptor1.classList.add('red-border');
-    userDescriptor1.placeholder = 'Enter a descriptor';
+    addRedBorder(userDescriptor1);
+    displayErrorMessage(userDescriptor1);
   } else if (userDescriptor2.value === '') {
-    userDescriptor2.classList.add('red-border');
-    userDescriptor2.placeholder = 'Enter a descriptor';
+    addRedBorder(userDescriptor2);
+    displayErrorMessage(userDescriptor2);
   } else if (userCover.value.endsWith('.jpg') === false || userCover.value.endsWith('.png') === false) {
-    userCover.classList.add('red-border');
-    userCover.placeholder = 'Enter a .jpg or .png image';
+    addRedBorder(userCover);
+    displayErrorMessage(userCover);
   }
 }
 
