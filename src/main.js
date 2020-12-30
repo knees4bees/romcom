@@ -46,50 +46,72 @@ function getRandomIndex(array) {
 }
 
 function getRandomCover() {
-  title.innerText = titles[getRandomIndex(titles)];
-  image.src = covers[getRandomIndex(covers)];
-  tagline1.innerText = descriptors[getRandomIndex(descriptors)];
-  tagline2.innerText = descriptors[getRandomIndex(descriptors)];
-  currentCover = new Cover(image.src, title.innerText, tagline1.innerText, tagline2.innerText);
+  var newTitle = titles[getRandomIndex(titles)];
+  var newImage = covers[getRandomIndex(covers)];
+  var newTagline1 = descriptors[getRandomIndex(descriptors)];
+  var newTagline2 = descriptors[getRandomIndex(descriptors)];
+  currentCover = new Cover(newImage, newTitle, newTagline1, newTagline2);
+  displayCurrentCover();
 }
 
-function showForm() {
-  userCover.placeholder = '';
-  userTitle.placeholder = '';
-  userDescriptor1.placeholder = '';
-  userDescriptor2.placeholder = '';
+function displayCurrentCover() {
+  title.innerText = currentCover.title;
+  image.src = currentCover.cover;
+  tagline1.innerText = currentCover.tagline1;
+  tagline2.innerText = currentCover.tagline2;
+}
+
+function hide(element) {
+  element.classList.add('hidden');
+}
+
+function show(element) {
+  element.classList.remove('hidden');
+}
+
+function dontShowFormError() {
+  userCover.classList.remove('red-border');
+  userTitle.classList.remove('red-border');
+  userDescriptor1.classList.remove('red-border');
+  userDescriptor2.classList.remove('red-border');
+}
+
+function createDefaultFormValues() {
   userCover.value = '';
   userTitle.value = '';
   userDescriptor1.value = '';
   userDescriptor2.value = '';
-  userCover.classList.remove('handle-error');
-  userTitle.classList.remove('handle-error');
-  userDescriptor1.classList.remove('handle-error');
-  userDescriptor2.classList.remove('handle-error');
-  makeOwnPage.classList.remove('hidden');
-  homePage.classList.add('hidden');
-  homeButton.classList.remove('hidden');
-  viewSavedPage.classList.add('hidden');
-  randomCoverButton.classList.add('hidden');
-  saveCoverButton.classList.add('hidden');
+}
+
+function setEmptyPlaceholders() {
+  userCover.placeholder = '';
+  userTitle.placeholder = '';
+  userDescriptor1.placeholder = '';
+  userDescriptor2.placeholder = '';
+}
+
+function showForm() {
+  createDefaultFormValues();
+  dontShowFormError();
+  setEmptyPlaceholders();
+  show(makeOwnPage);
+  show(homeButton);
+  hide(homePage);
+  hide(viewSavedPage);
+  hide(randomCoverButton);
+  hide(saveCoverButton);
 }
 
 function goHome() {
-  makeOwnPage.classList.add('hidden');
-  homePage.classList.remove('hidden');
-  homeButton.classList.add('hidden');
-  viewSavedPage.classList.add('hidden');
-  randomCoverButton.classList.remove('hidden');
-  saveCoverButton.classList.remove('hidden');
+  show(homePage);
+  show(randomCoverButton);
+  show(saveCoverButton);
+  hide(makeOwnPage);
+  hide(homeButton);
+  hide(viewSavedPage);
 }
 
-function viewSaved() {
-  makeOwnPage.classList.add('hidden');
-  homePage.classList.add('hidden');
-  homeButton.classList.remove('hidden');
-  viewSavedPage.classList.remove('hidden');
-  randomCoverButton.classList.add('hidden');
-  saveCoverButton.classList.add('hidden');
+function displayMiniCovers() {
   savedCoversSection.innerHTML = '';
   for (var i = 0; i < savedCovers.length; i++) {
     savedCoversSection.innerHTML += `
@@ -107,34 +129,80 @@ function viewSaved() {
   }
 }
 
+function viewSaved() {
+  show(homeButton);
+  show(viewSavedPage);
+  hide(makeOwnPage);
+  hide(homePage);
+  hide(randomCoverButton);
+  hide(saveCoverButton);
+  displayMiniCovers();
+}
+
+function validateFields() {
+  if ( (userCover.value.endsWith('.png') || userCover.value.endsWith('.jpg'))
+      && userTitle.value
+      && userDescriptor1.value
+      && userDescriptor2.value)
+    {
+      return true;
+    } else {
+      return false;
+    }
+}
+
+function ingestUserData() {
+  newCover = userCover.value;
+  newTitle = userTitle.value;
+  newTagline1 = userDescriptor1.value;
+  newTagline2 = userDescriptor2.value;
+  covers.push(newCover);
+  titles.push(newTitle);
+  descriptors.push(newTagline1, newTagline2);
+  currentCover = new Cover(newCover, newTitle, newTagline1, newTagline2);
+  displayCurrentCover();
+}
+
+function addRedBorder(element) {
+  element.classList.add('red-border');
+}
+
+function displayErrorMessage(element) {
+  if (element === userTitle) {
+    message = 'Enter a title';
+  } else if (element === userCover) {
+    message = 'Enter a .jpg or .png image';
+  } else {
+    message = 'Enter a descriptor';
+  }
+
+  element.placeholder = message;
+}
+
+function handleError() {
+  if (userTitle.value === '') {
+    addRedBorder(userTitle);
+    displayErrorMessage(userTitle);
+  } else if (userDescriptor1.value === '') {
+    addRedBorder(userDescriptor1);
+    displayErrorMessage(userDescriptor1);
+  } else if (userDescriptor2.value === '') {
+    addRedBorder(userDescriptor2);
+    displayErrorMessage(userDescriptor2);
+  } else if (userCover.value.endsWith('.jpg') === false || userCover.value.endsWith('.png') === false) {
+    addRedBorder(userCover);
+    displayErrorMessage(userCover);
+  }
+}
+
 function createBook() {
   event.preventDefault();
-  userCover.classList.remove('handle-error');
-  userTitle.classList.remove('handle-error');
-  userDescriptor1.classList.remove('handle-error');
-  userDescriptor2.classList.remove('handle-error');
-  if ( (userCover.value.endsWith('.png') || userCover.value.endsWith('.jpg')) && userTitle.value && userDescriptor1.value && userDescriptor2.value) {
-    image.src = userCover.value;
-    title.innerText = userTitle.value;
-    tagline1.innerText = userDescriptor1.value;
-    tagline2.innerText = userDescriptor2.value;
-    covers.push(userCover.value);
-    titles.push(userTitle.value);
-    descriptors.push(userDescriptor1.value, userDescriptor2.value);
-    currentCover = new Cover(image.src, title.innerText, tagline1.innerText, tagline2.innerText);
+  dontShowFormError();
+  if (validateFields()) {
+    ingestUserData();
     goHome();
-  } else if (userTitle.value === '') {
-      userTitle.classList.add('handle-error');
-      userTitle.placeholder = 'Enter a title';
-  } else if (userDescriptor1.value === '') {
-      userDescriptor1.classList.add('handle-error');
-      userDescriptor1.placeholder = 'Enter a descriptor';
-  } else if (userDescriptor2.value === '') {
-      userDescriptor2.classList.add('handle-error');
-      userDescriptor2.placeholder = 'Enter a descriptor';
-  } else if (userCover.value.endsWith('.jpg') === false || userCover.value.endsWith('.png') === false) {
-      userCover.classList.add('handle-error');
-      userCover.placeholder = 'Enter a .jpg or .png image';
+  } else {
+    handleError();
   }
 }
 
@@ -142,14 +210,14 @@ function saveCover() {
   if (savedCovers.includes(currentCover)) {
     return
   } else {
-      savedCovers.push(currentCover);
+    savedCovers.push(currentCover);
   }
 }
 
 
 function deleteCover() {
   for (var i = 0; i < savedCovers.length; i++) {
-    if (event.target.id == savedCovers[i].id) {
+    if (parseInt(event.target.id) === savedCovers[i].id) {
       savedCovers.splice(i, 1);
     }
   }

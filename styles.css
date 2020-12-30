@@ -165,6 +165,6 @@ form > button:hover {
   color: white;
 }
 
-.handle-error {
+.red-border {
   border: 3px solid red;
 }
