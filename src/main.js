@@ -212,7 +212,7 @@ function saveCover() {
 
 function deleteCover() {
   for (var i = 0; i < savedCovers.length; i++) {
-    if (event.target.id == savedCovers[i].id) {
+    if (parseInt(event.target.id) === savedCovers[i].id) {
       savedCovers.splice(i, 1);
     }
   }
