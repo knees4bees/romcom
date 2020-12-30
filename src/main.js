@@ -151,12 +151,8 @@ function ingestUserData() {
   goHome();
 }
 
-function createBook() {
-  event.preventDefault();
-  dontShowFormError();
-  if (validateFields()) {
-    ingestUserData();
-  } else if (userTitle.value === '') {
+function handleError() {
+  if (userTitle.value === '') {
     userTitle.classList.add('handle-error');
     userTitle.placeholder = 'Enter a title';
   } else if (userDescriptor1.value === '') {
@@ -168,6 +164,16 @@ function createBook() {
   } else if (userCover.value.endsWith('.jpg') === false || userCover.value.endsWith('.png') === false) {
     userCover.classList.add('handle-error');
     userCover.placeholder = 'Enter a .jpg or .png image';
+  }
+}
+
+function createBook() {
+  event.preventDefault();
+  dontShowFormError();
+  if (validateFields()) {
+    ingestUserData();
+  } else {
+    handleError();
   }
 }
 
