@@ -127,10 +127,22 @@ function viewSaved() {
   }
 }
 
+function validateFields() {
+  if ( (userCover.value.endsWith('.png') || userCover.value.endsWith('.jpg'))
+      && userTitle.value
+      && userDescriptor1.value
+      && userDescriptor2.value)
+    {
+      return true;
+    } else {
+      return false;
+    }
+}
+
 function createBook() {
   event.preventDefault();
   dontShowFormError();
-  if ( (userCover.value.endsWith('.png') || userCover.value.endsWith('.jpg')) && userTitle.value && userDescriptor1.value && userDescriptor2.value) {
+  if (validateFields()) {
     image.src = userCover.value;
     title.innerText = userTitle.value;
     tagline1.innerText = userDescriptor1.value;
