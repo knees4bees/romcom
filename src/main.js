@@ -148,15 +148,18 @@ function validateFields() {
 }
 
 function ingestUserData() {
-  image.src = userCover.value;
-  title.innerText = userTitle.value;
-  tagline1.innerText = userDescriptor1.value;
-  tagline2.innerText = userDescriptor2.value;
-  covers.push(userCover.value);
-  titles.push(userTitle.value);
-  descriptors.push(userDescriptor1.value, userDescriptor2.value);
-  currentCover = new Cover(image.src, title.innerText, tagline1.innerText, tagline2.innerText);
-  goHome();
+  newCover = userCover.value;
+  newTitle = userTitle.value;
+  newTagline1 = userDescriptor1.value;
+  newTagline2 = userDescriptor2.value;
+  covers.push(newCover);
+  titles.push(newTitle);
+  descriptors.push(newTagline1, newTagline2);
+  currentCover = new Cover(newCover, newTitle, newTagline1, newTagline2);
+  image.src = currentCover.cover;
+  title.innerText = currentCover.title;
+  tagline1.innerText = currentCover.tagline1;
+  tagline2.innerText = currentCover.tagline2;
 }
 
 function addRedBorder(element) {
@@ -196,6 +199,7 @@ function createBook() {
   dontShowFormError();
   if (validateFields()) {
     ingestUserData();
+    goHome();
   } else {
     handleError();
   }
