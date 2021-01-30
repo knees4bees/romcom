@@ -5,7 +5,7 @@ RomCom is a web app that displays random romance novel covers. Users can generat
 
 ## Getting Started
 
-Go to [our site on GitHub Pages](https://josharagon.github.io/romcom/) and start clicking.
+Go to [our site on GitHub Pages](https://knees4bees.github.io/romcom/) and start clicking.
 
 
 ## RomCom in Action
